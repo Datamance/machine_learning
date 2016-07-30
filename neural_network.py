@@ -1,10 +1,10 @@
 """A very basic single-layer Neural Network."""
 
+import data_utils
 import matplotlib.pyplot
 import numpy
 import operator
 import utils
-import random
 import requests
 import scipy.special
 
@@ -28,35 +28,9 @@ DEFAULT_EPOCH_BOUNDS = (2, 10)
 MNIST_TEST_URL = 'http://pjreddie.com/media/files/mnist_test.csv'
 MNIST_TRAINING_URL = 'http://pjreddie.com/media/files/mnist_train.csv'
 
-
-def _scale(value, lower_bound=0.99, upper_bound=255.0):
-    """Scales the input to between 0 and 1.
-
-    Defaults to grayscale.
-
-    :param: value
-    :param: lower_bound
-    :param: upper_bound
-    """
-    return (value / upper_bound * lower_bound) + (1 - lower_bound)
-
-
-def _get_classification_data(url, **kwargs):
-    """Gets the classification data from a given url"""
-    data_array = []
-
-    for line in requests.get(url).text.split('\n')[:-1]:  # Empty last element.
-        string_array = line.split(',')
-        data_array.append(
-            [int(string_array[0])] +
-            [_scale(float(num), **kwargs) for num in string_array[1:]])
-
-    return data_array
-
-
 # Default Data sets.
-TRAINING_DATA = _get_classification_data(MNIST_TRAINING_URL)
-TEST_DATA = _get_classification_data(MNIST_TEST_URL)
+TRAINING_DATA = data_utils._get_classification_data(MNIST_TRAINING_URL)
+TEST_DATA = data_utils._get_classification_data(MNIST_TEST_URL)
 
 
 class NeuralNetwork(object):
@@ -104,7 +78,6 @@ class NeuralNetwork(object):
         self._training_epochs = epochs_override or self._training_epochs
 
         for epoch in range(self._training_epochs):
-            # random.shuffle(training_data) # random shuffle
             for record in training_data:
                 inputs = numpy.asfarray(record[1:])
                 targets = numpy.zeros(self._num_nodes[OUTPUT]) + 0.01
