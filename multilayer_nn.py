@@ -1,4 +1,4 @@
-"""A very basic multi-layer Neural Network."""
+"""A very basic multi-layer Neural Network. Can support arbitrary layers."""
 
 import data_utils
 import matplotlib.pyplot
