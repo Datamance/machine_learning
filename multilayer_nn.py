@@ -67,7 +67,6 @@ def _create_connection_matrix(nodedef_seq):
 
 class MultiLayerANN(object):
     """Base class for a simple multilayer neural network."""
-
     def __init__(self, *args, learning_rate=0.08, activation_function=None,
                  training_epochs=7):
         """Constructor."""
@@ -188,7 +187,7 @@ class MultiLayerANN(object):
 def get_tested_network():
     """Tests our Multilayer ANN."""
     neural_network = MultiLayerANN(
-        784, 180, 180, 10, learning_rate=0.01, training_epochs=10)
+        784, 200, 200, 10, learning_rate=0.01, training_epochs=10)
 
     neural_network.train()
     print(neural_network.test())

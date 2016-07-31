@@ -1,11 +1,9 @@
 """A very basic single-layer Neural Network."""
 
 import data_utils
-import matplotlib.pyplot
 import numpy
 import operator
 import utils
-import requests
 import scipy.special
 
 __author__ = 'Rico Rodriguez'
@@ -72,8 +70,8 @@ class NeuralNetwork(object):
     def train(self, data_url=None, epochs_override=None):
         """Exposed training method, fetches data too."""
         # Fetch training data.
-        training_data = (_get_classification_data(data_url) if data_url
-                         else TRAINING_DATA)
+        training_data = (data_utils._get_classification_data(data_url)
+                         if data_url else TRAINING_DATA)
 
         self._training_epochs = epochs_override or self._training_epochs
 
@@ -129,7 +127,7 @@ class NeuralNetwork(object):
 
     def test(self, data_url=None):
         """Tests this Neural Network."""
-        test_data = (_get_classification_data(data_url) if data_url
+        test_data = (data_utils._get_classification_data(data_url) if data_url
                      else TEST_DATA)
 
         scorecard = []
