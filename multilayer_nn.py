@@ -1,6 +1,6 @@
 """A very basic multi-layer Neural Network.
 
-Should be able to support an arbitrary # of layers.
+Should be able to support an arbitrary number of layers.
 
 TODO(rrodriguez): Add convolutional capabilities.
 """
