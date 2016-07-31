@@ -1,4 +1,9 @@
-"""A very basic multi-layer Neural Network. Can support arbitrary layers."""
+"""A very basic multi-layer Neural Network.
+
+Should be able to support an arbitrary # of layers.
+
+TODO(rrodriguez): Add convolutional capabilities.
+"""
 
 import data_utils
 import matplotlib.pyplot
