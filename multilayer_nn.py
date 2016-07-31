@@ -183,7 +183,7 @@ class MultiLayerANN(object):
 def get_tested_network():
     """Tests our Multilayer ANN."""
     neural_network = MultiLayerANN(
-        784, 200, 10, learning_rate=0.04, training_epochs=7)
+        784, 180, 180, 10, learning_rate=0.01, training_epochs=10)
 
     neural_network.train()
     print(neural_network.test())
