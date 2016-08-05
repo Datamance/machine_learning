@@ -3,11 +3,10 @@
 """Classifier for chat data from nltk corpus."""
 
 __author__ = 'Rico Rodriguez'
-__copyright__ = 'Copyright 2016, Linkedin'
 __credits__ = ['Rico Rodriguez']
 __version__ = '0.0.1'
 __maintainer__ = 'Rico Rodriguez'
-__email__ = 'rrodriguez@linkedin.com'
+__email__ = 'rico.l.rodriguez@gmail.com'
 
 
 DIALOGUE_ACT_TYPES = 'DAT'
