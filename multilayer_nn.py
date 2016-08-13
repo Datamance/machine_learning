@@ -77,8 +77,7 @@ class MultiLayerANN(object):
         self._learning_rate = learning_rate
 
         # Sigmoid-esque activation function.
-        self.activation_function = (
-            activation_function or (lambda x: scipy.special.expit(x)))
+        self.activation_function = activation_function or scipy.special.expit
 
         # Score is initially set to 0.
         self._score = 0.0
