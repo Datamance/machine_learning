@@ -6,10 +6,7 @@ TODO(rrodriguez): Add convolutional capabilities.
 """
 
 import data_utils
-import matplotlib.pyplot
 import numpy
-import operator
-import utils
 import scipy.special
 
 __author__ = 'Rico Rodriguez'

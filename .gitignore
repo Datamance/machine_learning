@@ -2,3 +2,4 @@ MNIST_data/
 __pycache__/
 py3
 activate
+.spyproject
