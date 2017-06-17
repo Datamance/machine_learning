@@ -66,7 +66,6 @@ def _get_feature_dict(post):
 
     feature_dict = {}
     tokenized_words = nltk.word_tokenize(post.text)
-    post_length = len(tokenized_words)
 
     # Establish all features
     feature_dict['first-word'] = tokenized_words[0]
