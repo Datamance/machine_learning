@@ -62,7 +62,12 @@ def get_rmse(actual, predicted):
 
 
 def evaluate_algorithm(dataset, algorithm, split, *args):
-    """Evaluates how close we got with the minimization."""
+    """Evaluates the efficacy of our linear model.
+    
+    TODO(Datamance):
+        - Extend to support different forms of validation
+        - Test multiple algorithm types
+    """
     train, test = train_test_split(dataset, split)
     test_set = []
 
