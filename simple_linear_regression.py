@@ -32,7 +32,11 @@ def str_column_to_float(dataset, column):
 
 
 def train_test_split(dataset, split):
-    """"Splits a dataset into a training set and a test set."""
+    """"Simple cross-validation split.
+    
+    TODO(Datamance):
+        - K-folds
+    """
     training = []
     train_size = split * len(dataset)
     dataset_copy = list(dataset)
