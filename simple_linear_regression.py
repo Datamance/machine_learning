@@ -3,8 +3,8 @@
 Linear Regression from scratch.
 
 This is not meant to be a performant implementation of Linear Regression,
-rather it is intended to be as simple as possible so as to have instructional
-value.
+rather it is intended to be as simple as possible so as to be understood
+in terms of the serial steps needed to do the actual math.
 """
 
 from random import seed, randrange
@@ -13,14 +13,15 @@ from math import sqrt
 
 
 def load_csv(filename):
-    """Loads the data"""
+    """Loads the data in list form."""
     dataset = []
     with open(filename, 'r') as f:
         csv_reader = reader(f)
         for row in csv_reader:
-            if not row:
+            if row:
+                dataset.append(row)
+            else:
                 continue
-            dataset.append(row)
     return dataset
 
 
@@ -32,7 +33,7 @@ def str_column_to_float(dataset, column):
 
 def train_test_split(dataset, split):
     """"Splits a dataset into a training set and a test set."""
-    training = list()
+    training = []
     train_size = split * len(dataset)
     dataset_copy = list(dataset)
 
@@ -45,15 +46,15 @@ def train_test_split(dataset, split):
 
 def get_rmse(actual, predicted):
     """Get Root Mean Squared Error."""
-    sum_error = 0.0
+    error_sum = 0.0
     
     for i in range(len(actual)):
         prediction_error = predicted[i] - actual[i]
-        sum_error += prediction_error ** 2
+        error_sum += (prediction_error ** 2)
         
-    mean_error = sum_error / float(len(actual))
+    mean_squared_error = sum_error / float(len(actual))
     
-    return sqrt(mean_error)
+    return sqrt(mean_squared_error)
 
 
 def evaluate_algorithm(dataset, algorithm, split, *args):
@@ -95,20 +96,19 @@ def coefficients(dataset):
     
     x_mean, y_mean = mean(x), mean(y)
     
-    b1 = covariance(x, x_mean, y, y_mean) / variance(x, x_mean)
+    slope = covariance(x, x_mean, y, y_mean) / variance(x, x_mean)
     
-    b0 = y_mean - b1 * x_mean
+    y_intercept = y_mean - b1 * x_mean
     
-    return (b0, b1)
+    return (y_intercept, slope)
 
 
 def simple_linear_regression(train, test):
     predictions = []
-    b0, b1 = coefficients(train)
+    y_intercept, slope = coefficients(train)
     
     for row in test:
-        y_hat = b0 + b1 * row[0]
-        predictions.append(y_hat)
+        predictions.append(y_intercept + (slope * row[0]))
     
     return predictions
 
