@@ -4,3 +4,4 @@ py3
 activate
 .spyproject
 datasets
+.DS_STORE
