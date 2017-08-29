@@ -107,7 +107,7 @@ def coefficients(dataset):
     
     slope = covariance(x, x_mean, y, y_mean) / variance(x, x_mean)
     
-    y_intercept = y_mean - b1 * x_mean
+    y_intercept = y_mean - slope * x_mean
     
     return (y_intercept, slope)
 
