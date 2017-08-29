@@ -56,7 +56,7 @@ def get_rmse(actual, predicted):
         prediction_error = predicted[i] - actual[i]
         error_sum += (prediction_error ** 2)
         
-    mean_squared_error = sum_error / float(len(actual))
+    mean_squared_error = error_sum / float(len(actual))
     
     return sqrt(mean_squared_error)
 
