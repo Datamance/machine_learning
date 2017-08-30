@@ -33,7 +33,7 @@ def str_column_to_float(dataset, column):
 
 def train_test_split(dataset, split):
     """"Simple cross-validation split.
-    
+
     TODO(Datamance):
         - K-folds
     """
@@ -41,6 +41,7 @@ def train_test_split(dataset, split):
     train_size = split * len(dataset)
     dataset_copy = list(dataset)
 
+    # Randomly sample for training - don't just pick the same ones every time.
     while len(training) < train_size:
         index = randrange(len(dataset_copy))
         training.append(dataset_copy.pop(index))
@@ -89,6 +90,18 @@ def mean(values):
 
 
 def covariance(x, mean_x, y, mean_y):
+    """Calculate covariance.
+
+    Nota Bene: when determining the b0 (slope) coefficient, we are using
+    covariance as the "rise"/y factor. If we're summing up all the products
+    of the mean-differences for x's and y's, then you can see how this works:
+    when both differences are negative, they multiply by each other to add
+    a positive number to the covariance sum. When both are positive, the same
+    thing happens.
+    
+    This means, when the signs match, the total goes up. And the larger the
+    magnitude within the signs, the more the covariance total goes up.
+    """
     result = 0.0
     for i in range(len(x)):
         result += (x[i] - mean_x) * (y[i] - mean_y)
@@ -104,7 +117,12 @@ def coefficients(dataset):
     y = [row[1] for row in dataset]
     
     x_mean, y_mean = mean(x), mean(y)
-    
+
+    # Slope is covariance(x,y) divided by variance in x.
+    # Note here that covariance multiplies x-variation away from the x-mean by
+    # y-variation away from the y-mean, while variance is just squaring the
+    # variations for x (before summing them). So we are treating covariance
+    # like "rise" and variance like "run."
     slope = covariance(x, x_mean, y, y_mean) / variance(x, x_mean)
     
     y_intercept = y_mean - slope * x_mean
